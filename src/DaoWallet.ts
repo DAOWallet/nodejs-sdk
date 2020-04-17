@@ -6,7 +6,7 @@ export class DaoWallet implements IDaoWallet {
   private secretKey: string;
   private url: string;
 
-  constructor(apiKey, secretKey, url) {
+  constructor(apiKey, secretKey, url = 'https://b2b.daowallet.com') {
     this.apiKey = apiKey;
     this.secretKey = secretKey;
     this.url = url;

@@ -4,7 +4,7 @@ const tslib_1 = require("tslib");
 const crypto_1 = require("crypto");
 const axios_1 = tslib_1.__importDefault(require("axios"));
 class DaoWallet {
-    constructor(apiKey, secretKey, url) {
+    constructor(apiKey, secretKey, url = 'https://b2b.daowallet.com') {
         this.apiKey = apiKey;
         this.secretKey = secretKey;
         this.url = url;
