@@ -41,8 +41,34 @@ class DaoWallet {
                 'X-Processing-Signature': this.getSignature(data)
             }
         });
-        console.log(result.data);
         return result.data;
+    }
+    async InvoiceCreate(amount, fiat_currency) {
+        const data = {
+            fiat_currency,
+            amount,
+        };
+        const result = (await axios_1.default({
+            url: this.url + '/api/v2/invoice/new',
+            method: 'POST',
+            data,
+            headers: {
+                'X-Processing-Key': this.apiKey,
+                'X-Processing-Signature': this.getSignature(data)
+            }
+        })).data;
+        return result;
+    }
+    async InvoiceStatus(foreignId) {
+        const data = {
+            id: foreignId
+        };
+        const result = (await axios_1.default({
+            url: this.url + '/api/v2/invoice/status',
+            method: 'GET',
+            params: data,
+        })).data;
+        return result;
     }
     getSignature(body) {
         return crypto_1.createHmac('sha512', this.secretKey)

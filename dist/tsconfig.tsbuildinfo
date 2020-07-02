@@ -154,16 +154,16 @@
         "signature": "f8b74c9a174eea1dced9aea206143ff452e5c6d446e8dfa5da836471d11c2a6f"
       },
       "../src/DaoWallet.interface.ts": {
-        "version": "7fca378f67a45229b7ff42198c1dbf0ec6f7c861dded94fb0ea5ef0b7d4e01f1",
-        "signature": "f944fc9e69086bc3686e7eeae24130d613ecea29700653739d3debccbf40cbf1"
+        "version": "fca186fb685db83e22427d45d76d6a4f248d22f7790ae0db08098dd42e27d16e",
+        "signature": "dfd501ed52714d7f555fdb1bc93da83065b7e3360931218e84c341abbc48ecf0"
       },
       "../node_modules/axios/index.d.ts": {
         "version": "e7df7eb51c5090db4bdcdbf9efe053530dff0e33796f40b08b1a3be6c3a351d0",
         "signature": "e7df7eb51c5090db4bdcdbf9efe053530dff0e33796f40b08b1a3be6c3a351d0"
       },
       "../src/DaoWallet.ts": {
-        "version": "1d5852643765bd7105e495041107348180dbbef893e5f38503dfc001f9e276f7",
-        "signature": "99ccc3d1424c4a69678fe2d546df34d99b6a6e863cba253ffbe247c680edec96"
+        "version": "eba4fc30bc17ab84d76864f2380654844a7308af5746de07986e45c7675f7f96",
+        "signature": "8597c11bd3cd912fbf26c5964d7a7fc2509cf4e8b7142d7ef5bbe3908401cbdd"
       },
       "../node_modules/@types/node/globals.d.ts": {
         "version": "1236b98326630298e0b9cd30ccecd77560ac925140b753f1b1a0ffc6e7b51ad4",

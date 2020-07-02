@@ -10,4 +10,6 @@ const takeAddressResult = await dw.AddressesTake('userId', BTC);
 const { address } = takeAddressResult.data;
 
 const withdrawalResult = await dw.CryptoWithdrawal('userId', 0.001, BTC, 'user_address');
+const invoiceInfo = await dw.InvoiceStatus('invoice-id');
+const createdInvoice = await dw.InvoiceCreate(20, 'EUR');
 ```

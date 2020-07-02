@@ -27,3 +27,36 @@ export enum ECryptoCurrency {
   BTC = 'BTC',
   ETH = 'ETH'
 }
+
+
+export enum EInvoiceStatus {
+  created = 'created',
+  paid = 'paid',
+  expired = 'expired',
+  declined = 'declined'
+}
+
+export enum EFiatCurrencyName {
+  USD = 'USD',
+  EUR = 'EUR',
+}
+
+export interface IInvoiceAddress {
+  address: string
+  expected_amount: number
+  crypto_currency: ECryptoCurrency
+  rate_usd: number
+  rate_eur: number
+}
+
+export interface IInvoiceResult {
+  foreign_id: string
+  addresses: IInvoiceAddress[]
+  client_amount: number
+  client_currency: EFiatCurrencyName
+  status: EInvoiceStatus
+  expired_at: string
+  paid_at: string
+  paid_currency: ECryptoCurrency
+  paid_tx: string
+}
