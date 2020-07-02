@@ -1,6 +1,6 @@
 import { createHmac } from 'crypto';
 import axios from 'axios';
-import {IDaoWallet, ECryptoCurrency, IDaoWalletResultData, IAddressTakeResult} from './DaoWallet.interface';
+import {IDaoWallet, ECryptoCurrency, IDaoWalletResultData, IAddressTakeResult, IInvoiceResult, EFiatCurrencyName} from './DaoWallet.interface';
 export class DaoWallet implements IDaoWallet {
   private apiKey: string;
   private secretKey: string;
@@ -46,8 +46,40 @@ export class DaoWallet implements IDaoWallet {
         'X-Processing-Signature': this.getSignature(data)
       }
     });
-    console.log(result.data)
     return result.data;
+  }
+
+  public async InvoiceCreate(amount: number, fiat_currency: EFiatCurrencyName): Promise<IInvoiceResult> {
+
+    const data = {
+      fiat_currency,
+      amount,
+    };
+    const result = (await axios({
+      url: this.url + '/api/v2/invoice/new',
+      method: 'POST',
+      data,
+      headers: {
+        'X-Processing-Key': this.apiKey,
+        'X-Processing-Signature': this.getSignature(data)
+      }
+    })).data;
+  
+    return result 
+  }
+
+  public async InvoiceStatus(foreignId: string): Promise<IInvoiceResult> {
+
+    const data = {
+      id: foreignId
+    };
+    const result = (await axios({
+      url: this.url + '/api/v2/invoice/status',
+      method: 'GET',
+      params: data,
+    })).data;
+  
+    return result 
   }
 
   private getSignature(body: object): string {
