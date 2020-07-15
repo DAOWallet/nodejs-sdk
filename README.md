@@ -31,7 +31,7 @@ const dw = new DaoWallet('your_api_key', 'your_secret_key');
 Method `AddressesTake` returns crypto address by `user_id` and `currency`.
 Usage example:
 ```javascript
-const address = await dw.AddressesTake('userId', 'BTC')
+const address = await dw.AddressesTake('userId any random string less than 128 chars', 'BTC')
 ```
 Method returns object:
 ```javascript
