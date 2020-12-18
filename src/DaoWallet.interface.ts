@@ -60,3 +60,9 @@ export interface IInvoiceResult {
   paid_currency: ECryptoCurrency
   paid_tx: string
 }
+
+export interface ISubAccountItem {
+  account_id: string
+  balance: number
+  created_at: string
+}
