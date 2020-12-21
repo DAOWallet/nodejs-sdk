@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DaoWallet = void 0;
 const tslib_1 = require("tslib");
 const crypto_1 = require("crypto");
 const axios_1 = tslib_1.__importDefault(require("axios"));
@@ -16,7 +17,7 @@ class DaoWallet {
         };
         const result = await axios_1.default({
             method: 'post',
-            url: this.url + '/api/v2/addresses/take',
+            url: this.url + '/v2/addresses/take',
             data,
             headers: {
                 'X-Processing-Key': this.apiKey,
@@ -34,7 +35,7 @@ class DaoWallet {
         };
         const result = await axios_1.default({
             method: 'post',
-            url: this.url + '/api/v2/withdrawal/crypto',
+            url: this.url + '/v2/withdrawal/crypto',
             data,
             headers: {
                 'X-Processing-Key': this.apiKey,
@@ -49,7 +50,7 @@ class DaoWallet {
             amount,
         };
         const result = (await axios_1.default({
-            url: this.url + '/api/v2/invoice/new',
+            url: this.url + '/v2/invoice/new',
             method: 'POST',
             data,
             headers: {
@@ -64,9 +65,59 @@ class DaoWallet {
             id: foreignId
         };
         const result = (await axios_1.default({
-            url: this.url + '/api/v2/invoice/status',
+            url: this.url + '/v2/invoice/status',
             method: 'GET',
             params: data,
+        })).data;
+        return result;
+    }
+    async SubAccountCreate(currency_name) {
+        const data = {
+            currency_name
+        };
+        const result = (await axios_1.default({
+            url: this.url + '/v2/sub-account/add',
+            method: 'POST',
+            data,
+            headers: {
+                'X-Processing-Key': this.apiKey,
+                'X-Processing-Signature': this.getSignature(data)
+            }
+        })).data;
+        return result;
+    }
+    async SubAccountList() {
+        const result = (await axios_1.default({
+            url: this.url + '/v2/sub-account',
+            method: 'GET',
+            headers: {
+                'X-Processing-Key': this.apiKey,
+                'X-Processing-Signature': this.getSignature({})
+            }
+        })).data;
+        return result;
+    }
+    async SubAccountExcahnge(data) {
+        const result = (await axios_1.default({
+            url: this.url + '/v2/sub-account/exchange',
+            method: 'POST',
+            data,
+            headers: {
+                'X-Processing-Key': this.apiKey,
+                'X-Processing-Signature': this.getSignature(data)
+            }
+        })).data;
+        return result;
+    }
+    async SubAccountWithdrawal(data) {
+        const result = (await axios_1.default({
+            url: this.url + '/v2/sub-account/withdrawal',
+            method: 'POST',
+            data,
+            headers: {
+                'X-Processing-Key': this.apiKey,
+                'X-Processing-Signature': this.getSignature(data)
+            }
         })).data;
         return result;
     }
