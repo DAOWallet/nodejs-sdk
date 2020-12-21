@@ -188,6 +188,26 @@ Method returns boolean value:
 ```javascript
   true/false
 ```
+
+#### `SubAccountHistory`
+Method `SubAccountHistory` returns history of subAccount with pagination
+2 params:
+* subAccount id
+* page 
+
+usage example:
+```javascript
+const history = await dw.SubAccountHistory('C.111.ETH.ZZZ', 1)
+```
+Method returns array:
+```javascript
+  {
+    created_at: string,
+    amount: number,
+    result: number,
+    currency_name: string
+  }[]
+```
 ---
 ## Total usage example
 ```javascript
@@ -228,4 +248,6 @@ const withdrawal = await dw.SubAccountWithdrawal({
   amount: 0.001,
   address: 'some_eth_address'
 })
+
+const history = await dw.SubAccountHistory('C.111.ETH.ZZZ', 1)
 ```

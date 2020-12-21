@@ -212,8 +212,8 @@
         "affectsGlobalScope": false
       },
       "../src/daowallet.ts": {
-        "version": "7d842cdc4b72301e3f75d52a9808d154b8f29e49e2907a91b771963018c5cfb5",
-        "signature": "0e61c1d10da24646d8ee9111c592f811b122382536564bd20f08321257e86ff3",
+        "version": "7ccf0cfdaa53e78caa7343af3cc187034412beed278761d4d9268a98ac5e4e43",
+        "signature": "10996f2dd185e2be559cb2c70247a581e8a73221bc2bcfacdbd3d17e7f000acf",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/node/globals.d.ts": {

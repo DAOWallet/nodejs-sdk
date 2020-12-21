@@ -140,6 +140,23 @@ export class DaoWallet implements IDaoWallet {
     return result 
   }
 
+  public async SubAccountHistory(accountId: string, page: number): Promise<boolean> {
+    const result = (await axios({
+      url: this.url + '/api/v2/sub-account/history',
+      method: 'GET',
+      params: {
+        accountId,
+        page,
+      },
+      headers: {
+        'X-Processing-Key': this.apiKey,
+        'X-Processing-Signature': this.getSignature({})
+      }
+    })).data;
+  
+    return result 
+  }
+
   private getSignature(body: object): string {
     return createHmac('sha512', this.secretKey)
       .update(JSON.stringify(body))

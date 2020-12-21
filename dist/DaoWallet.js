@@ -121,6 +121,21 @@ class DaoWallet {
         })).data;
         return result;
     }
+    async SubAccountHistory(accountId, page) {
+        const result = (await axios_1.default({
+            url: this.url + '/v2/sub-account/history',
+            method: 'GET',
+            params: {
+                accountId,
+                page,
+            },
+            headers: {
+                'X-Processing-Key': this.apiKey,
+                'X-Processing-Signature': this.getSignature({})
+            }
+        })).data;
+        return result;
+    }
     getSignature(body) {
         return crypto_1.createHmac('sha512', this.secretKey)
             .update(JSON.stringify(body))
