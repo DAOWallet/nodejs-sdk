@@ -149,21 +149,32 @@ Method returns array:
   }[]
 ```
 
-#### `SubAccountExcahnge`
-Method `SubAccountExcahnge` excahnge from/to SubAccount
+#### `SubAccountFromMasterExchange`
+Method `SubAccountFromMasterExchange` excahnge from masterAccount to subAccount
 usage example:
 ```javascript
-const excahngeFromSubAccount = await dw.SubAccountExcahnge({
-  from: 'C.111.ETH.ZZZ',
-  currency_from: 'ETH',
-  currency_to: 'BTC',
+const exchange = await dw.SubAccountFromMasterExchange({
+  to: 'C.111.ETH.ZZZ',
+  currency_from: 'BTC',
   amount: 0.02
 })
-const excahngeToSubAccount = await dw.SubAccountExcahnge({
-  to: 'C.111.ETH.ZZZ',
-  currency_from: 'USDT',
-  currency_to: 'ETH',
-  amount: 15
+```
+Method returns object:
+```javascript
+  {
+    amount: number,
+    currency: string
+  }
+```
+
+#### `SubAccountToMasterExchange`
+Method `SubAccountToMasterExchange` excahnge from subAccount to masterAccount
+usage example:
+```javascript
+const exchange = await dw.SubAccountToMasterExchange({
+  from: 'C.111.ETH.ZZZ',
+  currency_to: 'BTC',
+  amount: 0.02
 })
 ```
 Method returns object:
@@ -229,16 +240,14 @@ const createdInvoice = await dw.InvoiceCreate(20, EUR);
 const createdSubAccount = await dw.SubAccountCreate(ETH)
 const list = await dw.SubAccountList()
 
-const excahngeToSubAccount = await dw.SubAccountExcahnge({
+const exchangeToSubAccount = await dw.SubAccountFromMasterExchange({
   to: 'C.111.ETH.ZZZ',
   currency_from: 'USDT',
-  currency_to: 'ETH',
   amount: 15
 })
 
-const excahngeFromSubAccount = await dw.SubAccountExcahnge({
+const exchangeFromSubAccount = await dw.SubAccountToMasterExchange({
   from: 'C.111.ETH.ZZZ',
-  currency_from: 'ETH',
   currency_to: 'BTC',
   amount: 0.02
 })

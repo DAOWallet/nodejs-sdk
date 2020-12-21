@@ -1,6 +1,17 @@
 import { createHmac } from 'crypto';
 import axios from 'axios';
-import {IDaoWallet, ECryptoCurrency, IDaoWalletResultData, IAddressTakeResult, IInvoiceResult, EFiatCurrencyName, ISubAccountItem, ISubAccountExchangeData, ISubAccountExchangeResult, ISubAccountWithdrawalInput} from './DaoWallet.interface';
+import {IDaoWallet,
+  ECryptoCurrency,
+  IDaoWalletResultData,
+  IAddressTakeResult,
+  IInvoiceResult,
+  EFiatCurrencyName,
+  ISubAccountItem,
+  ISubAccountFromMasterExchangeData,
+  ISubAccountToMasterExchangeData,
+  ISubAccountExchangeResult,
+  ISubAccountWithdrawalInput
+} from './DaoWallet.interface';
 export class DaoWallet implements IDaoWallet {
   private apiKey: string;
   private secretKey: string;
@@ -112,9 +123,23 @@ export class DaoWallet implements IDaoWallet {
     return result 
   }
 
-  public async SubAccountExcahnge(data: ISubAccountExchangeData): Promise<ISubAccountExchangeResult> {
+  public async SubAccountFromMasterExchange(data: ISubAccountFromMasterExchangeData): Promise<ISubAccountExchangeResult> {
     const result = (await axios({
-      url: this.url + '/api/v2/sub-account/exchange',
+      url: this.url + '/api/v2/sub-account/from-master',
+      method: 'POST',
+      data,
+      headers: {
+        'X-Processing-Key': this.apiKey,
+        'X-Processing-Signature': this.getSignature(data)
+      }
+    })).data;
+  
+    return result 
+  }
+
+  public async SubAccountToMasterExchange(data: ISubAccountToMasterExchangeData): Promise<ISubAccountExchangeResult> {
+    const result = (await axios({
+      url: this.url + '/api/v2/sub-account/to-master',
       method: 'POST',
       data,
       headers: {

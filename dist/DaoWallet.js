@@ -17,7 +17,7 @@ class DaoWallet {
         };
         const result = await axios_1.default({
             method: 'post',
-            url: this.url + '/v2/addresses/take',
+            url: this.url + '/api/v2/addresses/take',
             data,
             headers: {
                 'X-Processing-Key': this.apiKey,
@@ -35,7 +35,7 @@ class DaoWallet {
         };
         const result = await axios_1.default({
             method: 'post',
-            url: this.url + '/v2/withdrawal/crypto',
+            url: this.url + '/api/v2/withdrawal/crypto',
             data,
             headers: {
                 'X-Processing-Key': this.apiKey,
@@ -50,7 +50,7 @@ class DaoWallet {
             amount,
         };
         const result = (await axios_1.default({
-            url: this.url + '/v2/invoice/new',
+            url: this.url + '/api/v2/invoice/new',
             method: 'POST',
             data,
             headers: {
@@ -65,7 +65,7 @@ class DaoWallet {
             id: foreignId
         };
         const result = (await axios_1.default({
-            url: this.url + '/v2/invoice/status',
+            url: this.url + '/api/v2/invoice/status',
             method: 'GET',
             params: data,
         })).data;
@@ -76,7 +76,7 @@ class DaoWallet {
             currency_name
         };
         const result = (await axios_1.default({
-            url: this.url + '/v2/sub-account/add',
+            url: this.url + '/api/v2/sub-account/add',
             method: 'POST',
             data,
             headers: {
@@ -88,7 +88,7 @@ class DaoWallet {
     }
     async SubAccountList() {
         const result = (await axios_1.default({
-            url: this.url + '/v2/sub-account',
+            url: this.url + '/api/v2/sub-account',
             method: 'GET',
             headers: {
                 'X-Processing-Key': this.apiKey,
@@ -97,9 +97,21 @@ class DaoWallet {
         })).data;
         return result;
     }
-    async SubAccountExcahnge(data) {
+    async SubAccountFromMasterExchange(data) {
         const result = (await axios_1.default({
-            url: this.url + '/v2/sub-account/exchange',
+            url: this.url + '/api/v2/sub-account/from-master',
+            method: 'POST',
+            data,
+            headers: {
+                'X-Processing-Key': this.apiKey,
+                'X-Processing-Signature': this.getSignature(data)
+            }
+        })).data;
+        return result;
+    }
+    async SubAccountToMasterExchange(data) {
+        const result = (await axios_1.default({
+            url: this.url + '/api/v2/sub-account/to-master',
             method: 'POST',
             data,
             headers: {
@@ -111,7 +123,7 @@ class DaoWallet {
     }
     async SubAccountWithdrawal(data) {
         const result = (await axios_1.default({
-            url: this.url + '/v2/sub-account/withdrawal',
+            url: this.url + '/api/v2/sub-account/withdrawal',
             method: 'POST',
             data,
             headers: {
@@ -123,7 +135,7 @@ class DaoWallet {
     }
     async SubAccountHistory(accountId, page) {
         const result = (await axios_1.default({
-            url: this.url + '/v2/sub-account/history',
+            url: this.url + '/api/v2/sub-account/history',
             method: 'GET',
             params: {
                 accountId,
