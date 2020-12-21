@@ -66,3 +66,22 @@ export interface ISubAccountItem {
   balance: number
   created_at: string
 }
+
+export interface ISubAccountExchangeData {
+  from: string
+  to: string
+  currency_from: string
+  currency_to: string
+  amount: number
+}
+
+export interface ISubAccountExchangeResult {
+  currency: string
+  amount: number
+}
+
+export interface ISubAccountWithdrawalInput {
+  accountId: string
+  amount: number
+  address: string
+}

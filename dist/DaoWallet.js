@@ -76,7 +76,7 @@ class DaoWallet {
             currency_name
         };
         const result = (await axios_1.default({
-            url: this.url + '/sub-account/add',
+            url: this.url + '/v2/sub-account/add',
             method: 'POST',
             data,
             headers: {
@@ -88,11 +88,35 @@ class DaoWallet {
     }
     async SubAccountList() {
         const result = (await axios_1.default({
-            url: this.url + '/sub-account',
+            url: this.url + '/v2/sub-account',
             method: 'GET',
             headers: {
                 'X-Processing-Key': this.apiKey,
                 'X-Processing-Signature': this.getSignature({})
+            }
+        })).data;
+        return result;
+    }
+    async SubAccountExcahnge(data) {
+        const result = (await axios_1.default({
+            url: this.url + '/v2/sub-account/exchange',
+            method: 'POST',
+            data,
+            headers: {
+                'X-Processing-Key': this.apiKey,
+                'X-Processing-Signature': this.getSignature(data)
+            }
+        })).data;
+        return result;
+    }
+    async SubAccountWithdrawal(data) {
+        const result = (await axios_1.default({
+            url: this.url + '/v2/sub-account/withdrawal',
+            method: 'POST',
+            data,
+            headers: {
+                'X-Processing-Key': this.apiKey,
+                'X-Processing-Signature': this.getSignature(data)
             }
         })).data;
         return result;

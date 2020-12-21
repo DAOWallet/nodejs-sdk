@@ -202,8 +202,8 @@
         "affectsGlobalScope": false
       },
       "../src/daowallet.interface.ts": {
-        "version": "9b375b9454f80c183c8afbaac902d7c37f5cd9a9eb8b0cfb023b4af01b2b84cc",
-        "signature": "5d5189cc24b5ce067548cb4eafb559c5ca4c6c2ce2dd914dcf1a89a0210494dc",
+        "version": "405bb329e8b2c30c416fffdd80fc4de3070fcbd11c837b4aac049e72c631e95b",
+        "signature": "c640ab7fde06c7b7d7d9fe5ee143c64285a299298253442973ff59871fd9f45a",
         "affectsGlobalScope": false
       },
       "../node_modules/axios/index.d.ts": {
@@ -212,8 +212,8 @@
         "affectsGlobalScope": false
       },
       "../src/daowallet.ts": {
-        "version": "59402f6fdb1deb9694e2e806b1bf9b38318b07b679c32b305231e4f630b03b37",
-        "signature": "397ffed3ea20960cf99b646e2cdd23038e67af13575f2ae7812aeb0a29797d3d",
+        "version": "7d842cdc4b72301e3f75d52a9808d154b8f29e49e2907a91b771963018c5cfb5",
+        "signature": "0e61c1d10da24646d8ee9111c592f811b122382536564bd20f08321257e86ff3",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/node/globals.d.ts": {

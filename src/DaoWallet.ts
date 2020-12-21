@@ -1,6 +1,6 @@
 import { createHmac } from 'crypto';
 import axios from 'axios';
-import {IDaoWallet, ECryptoCurrency, IDaoWalletResultData, IAddressTakeResult, IInvoiceResult, EFiatCurrencyName, ISubAccountItem} from './DaoWallet.interface';
+import {IDaoWallet, ECryptoCurrency, IDaoWalletResultData, IAddressTakeResult, IInvoiceResult, EFiatCurrencyName, ISubAccountItem, ISubAccountExchangeData, ISubAccountExchangeResult, ISubAccountWithdrawalInput} from './DaoWallet.interface';
 export class DaoWallet implements IDaoWallet {
   private apiKey: string;
   private secretKey: string;
@@ -87,7 +87,7 @@ export class DaoWallet implements IDaoWallet {
       currency_name
     };
     const result = (await axios({
-      url: this.url + '/api/sub-account/add',
+      url: this.url + '/api/v2/sub-account/add',
       method: 'POST',
       data,
       headers: {
@@ -101,11 +101,39 @@ export class DaoWallet implements IDaoWallet {
 
   public async SubAccountList(): Promise<ISubAccountItem[]> {
     const result = (await axios({
-      url: this.url + '/api/sub-account',
+      url: this.url + '/api/v2/sub-account',
       method: 'GET',
       headers: {
         'X-Processing-Key': this.apiKey,
         'X-Processing-Signature': this.getSignature({})
+      }
+    })).data;
+  
+    return result 
+  }
+
+  public async SubAccountExcahnge(data: ISubAccountExchangeData): Promise<ISubAccountExchangeResult> {
+    const result = (await axios({
+      url: this.url + '/api/v2/sub-account/exchange',
+      method: 'POST',
+      data,
+      headers: {
+        'X-Processing-Key': this.apiKey,
+        'X-Processing-Signature': this.getSignature(data)
+      }
+    })).data;
+  
+    return result 
+  }
+
+  public async SubAccountWithdrawal(data: ISubAccountWithdrawalInput): Promise<boolean> {
+    const result = (await axios({
+      url: this.url + '/api/v2/sub-account/withdrawal',
+      method: 'POST',
+      data,
+      headers: {
+        'X-Processing-Key': this.apiKey,
+        'X-Processing-Signature': this.getSignature(data)
       }
     })).data;
   

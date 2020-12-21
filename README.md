@@ -121,7 +121,7 @@ Method returns object:
 ## SubAccounts
 #### `SubAccountCreate`
 Method `SubAccountCreate` create new SubAccount
-usage rxample:
+usage example:
 ```javascript
 const createdSubAccount = await dw.SubAccountCreate('ETH')
 ```
@@ -136,7 +136,7 @@ Method returns object:
 
 #### `SubAccountList`
 Method `SubAccountList` returns all company SubAccounts
-usage rxample:
+usage example:
 ```javascript
 const list = await dw.SubAccountList()
 ```
@@ -147,6 +147,46 @@ Method returns array:
     balance: number,
     created_at: string
   }[]
+```
+
+#### `SubAccountExcahnge`
+Method `SubAccountExcahnge` excahnge from/to SubAccount
+usage example:
+```javascript
+const excahngeFromSubAccount = await dw.SubAccountExcahnge({
+  from: 'C.111.ETH.ZZZ',
+  currency_from: 'ETH',
+  currency_to: 'BTC',
+  amount: 0.02
+})
+const excahngeToSubAccount = await dw.SubAccountExcahnge({
+  to: 'C.111.ETH.ZZZ',
+  currency_from: 'USDT',
+  currency_to: 'ETH',
+  amount: 15
+})
+```
+Method returns object:
+```javascript
+  {
+    amount: number,
+    currency: string
+  }
+```
+
+#### `SubAccountWithdrawal`
+Method `SubAccountWithdrawal` withdraw crypto from SubAccounts
+usage example:
+```javascript
+const withdrawal = await dw.SubAccountWithdrawal({
+  accountId: 'C.111.ETH.ZZZ',
+  amount: 0.001,
+  address: 'some_eth_address'
+})
+```
+Method returns boolean value:
+```javascript
+  true/false
 ```
 ---
 ## Total usage example
@@ -168,4 +208,24 @@ const createdInvoice = await dw.InvoiceCreate(20, EUR);
 
 const createdSubAccount = await dw.SubAccountCreate(ETH)
 const list = await dw.SubAccountList()
+
+const excahngeToSubAccount = await dw.SubAccountExcahnge({
+  to: 'C.111.ETH.ZZZ',
+  currency_from: 'USDT',
+  currency_to: 'ETH',
+  amount: 15
+})
+
+const excahngeFromSubAccount = await dw.SubAccountExcahnge({
+  from: 'C.111.ETH.ZZZ',
+  currency_from: 'ETH',
+  currency_to: 'BTC',
+  amount: 0.02
+})
+
+const withdrawal = await dw.SubAccountWithdrawal({
+  accountId: 'C.111.ETH.ZZZ',
+  amount: 0.001,
+  address: 'some_eth_address'
+})
 ```
