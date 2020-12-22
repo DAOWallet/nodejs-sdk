@@ -82,10 +82,26 @@ export interface ISubAccountFromMasterExchangeData {
   to: string
   currency_from: string
   amount: number
+  memo: string
 }
 
 export interface ISubAccountToMasterExchangeData {
   from: string
   currency_to: string
   amount: number
+  memo: string
+}
+
+export interface ISubAccountGetRateData {
+  currency_from: string
+  currency_to: string
+  amount: number
+}
+
+export interface ISubAccountGetRateResult {
+  currency_from: string
+  currency_to: string
+  amount_from: number
+  amount_to: number
+  rate: number
 }

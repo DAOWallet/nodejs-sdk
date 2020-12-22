@@ -10,7 +10,8 @@ import {IDaoWallet,
   ISubAccountFromMasterExchangeData,
   ISubAccountToMasterExchangeData,
   ISubAccountExchangeResult,
-  ISubAccountWithdrawalInput
+  ISubAccountWithdrawalInput,
+  ISubAccountGetRateData
 } from './DaoWallet.interface';
 export class DaoWallet implements IDaoWallet {
   private apiKey: string;
@@ -173,6 +174,20 @@ export class DaoWallet implements IDaoWallet {
         accountId,
         page,
       },
+      headers: {
+        'X-Processing-Key': this.apiKey,
+        'X-Processing-Signature': this.getSignature({})
+      }
+    })).data;
+  
+    return result 
+  }
+
+  public async SubAccountRate(params: ISubAccountGetRateData): Promise<boolean> {
+    const result = (await axios({
+      url: this.url + '/api/v2/sub-account/rate',
+      method: 'GET',
+      params,
       headers: {
         'X-Processing-Key': this.apiKey,
         'X-Processing-Signature': this.getSignature({})

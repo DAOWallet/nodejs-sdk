@@ -156,14 +156,19 @@ usage example:
 const exchange = await dw.SubAccountFromMasterExchange({
   to: 'C.111.ETH.ZZZ',
   currency_from: 'BTC',
-  amount: 0.02
+  amount: 0.02,
+  memo: 'any-string'
 })
 ```
 Method returns object:
 ```javascript
   {
-    amount: number,
-    currency: string
+    amount_from: number,
+    amount_to: nubmer,
+    currency_from: string,
+    currency_to: string,
+    rate: number,
+    memo: string
   }
 ```
 
@@ -174,14 +179,19 @@ usage example:
 const exchange = await dw.SubAccountToMasterExchange({
   from: 'C.111.ETH.ZZZ',
   currency_to: 'BTC',
+  memo: 'any-string',
   amount: 0.02
 })
 ```
 Method returns object:
 ```javascript
   {
-    amount: number,
-    currency: string
+    amount_from: number,
+    amount_to: nubmer,
+    currency_from: string,
+    currency_to: string,
+    rate: number,
+    memo: string
   }
 ```
 
@@ -219,6 +229,27 @@ Method returns array:
     currency_name: string
   }[]
 ```
+
+#### `SubAccountRate`
+Method `SubAccountRate` returns rate
+usage example:
+```javascript
+const rate = await dw.SubAccountRate({
+  currency_from: 'ETH',
+  currency_to: 'BTC',
+  amount: 0.037,
+})
+```
+Method returns object:
+```javascript
+  {
+    currency_from: string,
+    currency_to: string,
+    amount_from: number,
+    amount_to: number,
+    rate: number
+  }
+```
 ---
 ## Total usage example
 ```javascript
@@ -243,13 +274,15 @@ const list = await dw.SubAccountList()
 const exchangeToSubAccount = await dw.SubAccountFromMasterExchange({
   to: 'C.111.ETH.ZZZ',
   currency_from: 'USDT',
-  amount: 15
+  amount: 15,
+  memo: 'some-string'
 })
 
 const exchangeFromSubAccount = await dw.SubAccountToMasterExchange({
   from: 'C.111.ETH.ZZZ',
   currency_to: 'BTC',
-  amount: 0.02
+  amount: 0.02,
+  memo: 'some-string'
 })
 
 const withdrawal = await dw.SubAccountWithdrawal({
@@ -259,4 +292,10 @@ const withdrawal = await dw.SubAccountWithdrawal({
 })
 
 const history = await dw.SubAccountHistory('C.111.ETH.ZZZ', 1)
+
+const rate = await dw.SubAccountRate({
+  currency_from: 'ETH',
+  currency_to: 'BTC',
+  amount: 0.037,
+})
 ```
